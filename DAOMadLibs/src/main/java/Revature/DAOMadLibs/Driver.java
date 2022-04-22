@@ -6,9 +6,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int choice1, choice2 = 0;
+		int choice1, choice2 = 0, choice3 = 0;
 		String username, password;
 		MadLibbersDAO stuff = new MadLibbersDAOImpl();
+		MadLibDAO moreStuff = new MadLibDAOImpl();
 		String[] words = new String[5];
 		words[4] = "One day, a ! went to the market to !. Noticing " +
 						  "the day was !, though, the market closed !.";
@@ -53,18 +54,31 @@ public class Driver {
 					words[2] = sc.next();
 					System.out.print("Enter an adverb: ");
 					words[3] = sc.next();
-					user.makeMadLib(words);
+					MadLib lib = new MadLib("", user.makeMadLib(words), 
+											user.getUsername());
+					System.out.println(lib);
+					System.out.print("Hit 1 to save your madlib: ");
+					choice3 = sc.nextInt();
+					if(choice3 == 1) {
+						System.out.print("What do you want to call your madlib?: ");
+						lib.setMadlibName(sc.next());
+						moreStuff.saveMadLib(lib);
+					}
 					break;
 				case 2:
-					// view a saved mad lib
+					System.out.print("Enter the name of the saved madlib: ");
+					MadLib libb = moreStuff.getMadLib(sc.next(), user.getUsername());
+					System.out.println(libb.getMadlibText());
 					break;
 				case 3:
-					// log out
+					System.out.println("Thank you.");
 					break;
 				default:
 					System.out.println("Invalid. Try Again.");
 			}
 		}
+		
+		sc.close();
 
 	}
 

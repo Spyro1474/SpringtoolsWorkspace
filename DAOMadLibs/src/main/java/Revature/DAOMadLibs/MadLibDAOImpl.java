@@ -6,16 +6,16 @@ import java.sql.SQLException;
 
 public class MadLibDAOImpl implements MadLibDAO {
 	@Override
-	public void saveMadLib(String name, String madlib, MadLibbers user) {
+	public void saveMadLib(MadLib lib) {
 		try {
 			String command = "INSERT INTO madlibs " +
 							 "VALUES (?, ?, ?);";
 			PreparedStatement st = ConnectionManager.getConnection()
 													.prepareStatement(command);
 			
-			st.setString(1, name);
-			st.setString(2, madlib);
-			st.setString(3, user.getUsername());
+			st.setString(1, lib.getMadlibName());
+			st.setString(2, lib.getMadlibText());
+			st.setString(3, lib.getUsername());
 			st.execute();
 		} catch(SQLException e) {
 			e.printStackTrace();
