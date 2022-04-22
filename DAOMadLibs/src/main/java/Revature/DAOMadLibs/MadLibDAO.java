@@ -1,5 +1,9 @@
 package Revature.DAOMadLibs;
 
-public class MadLibDAO {
-
+public interface MadLibDAO {
+	// retrieves saved madlibs by user
+	public MadLib getMadLib(String name, MadLibbers user);
+	
+	// add madlib to the database
+	public void saveMadLib();
 }
