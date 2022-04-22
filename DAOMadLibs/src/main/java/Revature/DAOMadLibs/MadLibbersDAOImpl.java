@@ -26,7 +26,7 @@ public class MadLibbersDAOImpl implements MadLibbersDAO {
 	public boolean checkValidLogin(String username, String password) {
 		try {
 			String query = "SELECT * " +
-					 	   "FROM madlibbers" +
+					 	   "FROM madlibbers " +
 					 	   "WHERE username = ? " +
 					 	   "AND passcode = ?;";
 			PreparedStatement st = ConnectionManager.getConnection()

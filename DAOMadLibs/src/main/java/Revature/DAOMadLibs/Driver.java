@@ -13,7 +13,7 @@ public class Driver {
 		String[] words = new String[5];
 		words[4] = "One day, a ! went to the market to !. Noticing " +
 						  "the day was !, though, the market closed !.";
-		System.out.print("Press 1 to sign up or 2 to register for an account. ");
+		System.out.print("Press 1 to sign up or 2 to login to an account. ");
 		choice1 = sc.nextInt();
 		
 		System.out.print("Please enter your username: ");
@@ -35,14 +35,13 @@ public class Driver {
 			}
 		}
 		
-		System.out.println("Pick the number of the option you want.");
-		System.out.println("1. Make a new madlib");
-		System.out.println("2. View a saved madlib");
-		System.out.println("3. Quit");
-		
-		choice2 = sc.nextInt();
-		
 		while(choice2 != 3) {
+			System.out.println("Pick the number of the option you want.");
+			System.out.println("1. Make a new madlib");
+			System.out.println("2. View a saved madlib");
+			System.out.println("3. Quit");
+			
+			choice2 = sc.nextInt();
 			
 			switch(choice2) {
 				case 1:
@@ -56,7 +55,7 @@ public class Driver {
 					words[3] = sc.next();
 					MadLib lib = new MadLib("", user.makeMadLib(words), 
 											user.getUsername());
-					System.out.println(lib);
+					System.out.println(lib.getMadlibText());
 					System.out.print("Hit 1 to save your madlib: ");
 					choice3 = sc.nextInt();
 					if(choice3 == 1) {
