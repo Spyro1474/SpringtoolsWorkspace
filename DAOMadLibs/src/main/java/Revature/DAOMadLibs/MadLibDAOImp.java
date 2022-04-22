@@ -1,5 +1,5 @@
 package Revature.DAOMadLibs;
 
-public class MadLibImp {
+public interface MadLibDAOImp {
 
 }

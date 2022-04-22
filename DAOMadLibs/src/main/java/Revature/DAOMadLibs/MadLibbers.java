@@ -1,5 +1,7 @@
 package Revature.DAOMadLibs;
 
-public class UserDAO {
+public class MadLibbers {
+	
+	
 
 }
