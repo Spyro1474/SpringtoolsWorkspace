@@ -44,7 +44,7 @@ public class MadLibbers {
 			
 			if(ch == '!') {
 				result += words[j];
-				j++;
+				++j;
 			} else {
 				result += ch;
 			}
