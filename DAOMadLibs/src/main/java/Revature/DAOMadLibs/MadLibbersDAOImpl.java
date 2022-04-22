@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class MadLibbersDAOImpl implements MadLibbersDAO {
 
-	@Override
 	public void signup(String username, String password) {
 		try {
 			if(checkUsername(username)) {
@@ -23,24 +22,27 @@ public class MadLibbersDAOImpl implements MadLibbersDAO {
 		}
 	}
 		
-		
-
 	@Override
-	public void login(String username, String password) {
-		// TODO Auto-generated method stub
+	public boolean checkValidLogin(String username, String password) {
+		try {
+			String query = "SELECT * " +
+					 	   "FROM madlibbers" +
+					 	   "WHERE username = ? " +
+					 	   "AND passcode = ?;";
+			PreparedStatement st = ConnectionManager.getConnection()
+				    								.prepareStatement(query);
+			st.setString(1, username);
+			st.setString(2, password);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			return false;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 		
-	}
-
-	@Override
-	public void saveMadLib() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public MadLib getMadLib() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public boolean checkUsername(String username) {
